@@ -1,0 +1,7 @@
+PROJET_MLOPS/
+├── venv/                # Ton environnement virtuel
+├── data/                # Ton dataset Home Credit
+├── notebooks/           # Tes tests de Feature Engineering (Étape 2)
+├── scripts/             # Tes scripts d'entraînement et API (Étape 5)
+├── mlflow.db            # Ta base de données de suivi
+└── artifacts/           # Tes modèles sauvegardés

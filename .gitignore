@@ -1,0 +1,16 @@
+# Environnement virtuel
+brayan_env/
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Données volumineuses
+data/
+*.csv
+*.png
+
+# Base de données locale et artefacts MLflow
+mlflow.db
+artifacts/
+.mlflow/
