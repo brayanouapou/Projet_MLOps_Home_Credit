@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard de Data Drift - Home Credit</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body { background-color: #f4f6f9; padding: 40px 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .card { box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <div>
+                <h1 class="fw-bold text-dark">🏦 Portail MLOps — Surveillance du Data Drift</h1>
+                <p class="text-muted mb-0">Analyse de stabilité des variables clés pour le scoring de crédit</p>
+            </div>
+            <span class="badge bg-dark fs-6 py-2 px-3">Master 2 Big Data & AI</span>
+        </div>
+        <hr class="mb-5">
+        
+        <div class="row">
+            
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 border-start border-4 border-danger">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="card-title text-dark mb-0"><code>AMT_INCOME_TOTAL</code></h4>
+                    <span class="badge bg-danger fs-6">DÉRAILLEMENT (Drift)</span>
+                </div>
+                <p class="mb-2"><strong>Score de dérive (p-value) :</strong> 0.0069</p>
+                <p class="text-muted small mb-3">Méthode : Test statistique de Kolmogorov-Smirnov</p>
+                <div class="text-center">
+                    <img src="static/drift_AMT_INCOME_TOTAL.png" class="img-fluid rounded" alt="Graphique de distribution">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 border-start border-4 border-danger">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="card-title text-dark mb-0"><code>AMT_CREDIT</code></h4>
+                    <span class="badge bg-danger fs-6">DÉRAILLEMENT (Drift)</span>
+                </div>
+                <p class="mb-2"><strong>Score de dérive (p-value) :</strong> 0.0000</p>
+                <p class="text-muted small mb-3">Méthode : Test statistique de Kolmogorov-Smirnov</p>
+                <div class="text-center">
+                    <img src="static/drift_AMT_CREDIT.png" class="img-fluid rounded" alt="Graphique de distribution">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 border-start border-4 border-danger">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="card-title text-dark mb-0"><code>AMT_ANNUITY</code></h4>
+                    <span class="badge bg-danger fs-6">DÉRAILLEMENT (Drift)</span>
+                </div>
+                <p class="mb-2"><strong>Score de dérive (p-value) :</strong> 0.0014</p>
+                <p class="text-muted small mb-3">Méthode : Test statistique de Kolmogorov-Smirnov</p>
+                <div class="text-center">
+                    <img src="static/drift_AMT_ANNUITY.png" class="img-fluid rounded" alt="Graphique de distribution">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 border-start border-4 border-success">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="card-title text-dark mb-0"><code>DAYS_BIRTH</code></h4>
+                    <span class="badge bg-success fs-6">STABLE</span>
+                </div>
+                <p class="mb-2"><strong>Score de dérive (p-value) :</strong> 0.7565</p>
+                <p class="text-muted small mb-3">Méthode : Test statistique de Kolmogorov-Smirnov</p>
+                <div class="text-center">
+                    <img src="static/drift_DAYS_BIRTH.png" class="img-fluid rounded" alt="Graphique de distribution">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 border-start border-4 border-danger">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="card-title text-dark mb-0"><code>DAYS_EMPLOYED</code></h4>
+                    <span class="badge bg-danger fs-6">DÉRAILLEMENT (Drift)</span>
+                </div>
+                <p class="mb-2"><strong>Score de dérive (p-value) :</strong> 0.0000</p>
+                <p class="text-muted small mb-3">Méthode : Test statistique de Kolmogorov-Smirnov</p>
+                <div class="text-center">
+                    <img src="static/drift_DAYS_EMPLOYED.png" class="img-fluid rounded" alt="Graphique de distribution">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 border-start border-4 border-danger">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="card-title text-dark mb-0"><code>EXT_SOURCE_1</code></h4>
+                    <span class="badge bg-danger fs-6">DÉRAILLEMENT (Drift)</span>
+                </div>
+                <p class="mb-2"><strong>Score de dérive (p-value) :</strong> 0.0000</p>
+                <p class="text-muted small mb-3">Méthode : Test statistique de Kolmogorov-Smirnov</p>
+                <div class="text-center">
+                    <img src="static/drift_EXT_SOURCE_1.png" class="img-fluid rounded" alt="Graphique de distribution">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 border-start border-4 border-success">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="card-title text-dark mb-0"><code>EXT_SOURCE_2</code></h4>
+                    <span class="badge bg-success fs-6">STABLE</span>
+                </div>
+                <p class="mb-2"><strong>Score de dérive (p-value) :</strong> 0.0726</p>
+                <p class="text-muted small mb-3">Méthode : Test statistique de Kolmogorov-Smirnov</p>
+                <div class="text-center">
+                    <img src="static/drift_EXT_SOURCE_2.png" class="img-fluid rounded" alt="Graphique de distribution">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 border-start border-4 border-danger">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="card-title text-dark mb-0"><code>EXT_SOURCE_3</code></h4>
+                    <span class="badge bg-danger fs-6">DÉRAILLEMENT (Drift)</span>
+                </div>
+                <p class="mb-2"><strong>Score de dérive (p-value) :</strong> 0.0000</p>
+                <p class="text-muted small mb-3">Méthode : Test statistique de Kolmogorov-Smirnov</p>
+                <div class="text-center">
+                    <img src="static/drift_EXT_SOURCE_3.png" class="img-fluid rounded" alt="Graphique de distribution">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 border-start border-4 border-success">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="card-title text-dark mb-0"><code>ANNUITY_INCOME_PERC</code></h4>
+                    <span class="badge bg-success fs-6">STABLE</span>
+                </div>
+                <p class="mb-2"><strong>Score de dérive (p-value) :</strong> 0.0559</p>
+                <p class="text-muted small mb-3">Méthode : Test statistique de Kolmogorov-Smirnov</p>
+                <div class="text-center">
+                    <img src="static/drift_ANNUITY_INCOME_PERC.png" class="img-fluid rounded" alt="Graphique de distribution">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 border-start border-4 border-danger">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="card-title text-dark mb-0"><code>PAYMENT_RATE</code></h4>
+                    <span class="badge bg-danger fs-6">DÉRAILLEMENT (Drift)</span>
+                </div>
+                <p class="mb-2"><strong>Score de dérive (p-value) :</strong> 0.0000</p>
+                <p class="text-muted small mb-3">Méthode : Test statistique de Kolmogorov-Smirnov</p>
+                <div class="text-center">
+                    <img src="static/drift_PAYMENT_RATE.png" class="img-fluid rounded" alt="Graphique de distribution">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+        </div>
+    </div>
+</body>
+</html>
