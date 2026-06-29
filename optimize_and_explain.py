@@ -10,7 +10,7 @@ from sklearn.pipeline import Pipeline
 import matplotlib.pyplot as plt
 
 # 1. Charger les données
-from data_processing import X_train, y_train, X_val, y_val
+from scripts.data_processing import X_train, y_train, X_val, y_val
 
 mlflow.set_tracking_uri("http://127.0.0.1:5000")
 mlflow.set_experiment("Comparaison_Modeles_Credit")
