@@ -21,8 +21,8 @@ model_pipeline = None
 
 # On cherche d'abord dans le dossier d'artifacts standard poussé sur Git
 POSSIBLE_PATHS = [
-    os.path.join(os.getcwd(), "artifacts/2/models/m-fa39e31d970b4a859c4eea74daea2a21/artifacts/model.pkl"),
-    os.path.join(os.getcwd(), "scripts/model.pkl") # Option de secours si tu le déplaces
+    os.path.join(os.getcwd(), "scripts/model.pkl"), # Priorité production
+    os.path.join(os.getcwd(), "artifacts/2/models/m-fa39e31d970b4a859c4eea74daea2a21/artifacts/model.pkl")
 ]
 
 for path in POSSIBLE_PATHS:
@@ -50,7 +50,7 @@ try:
         print(f"📋 Structure et médianes chargées en production ({len(MODEL_COLUMNS)} features).")
     else:
         # Solution de secours locale si le fichier n'est pas encore là
-        from data_processing import X_train
+        from scripts.data_processing import X_train
         MODEL_COLUMNS = list(X_train.columns)
         TRAIN_MEDIANS = X_train.median()
         print("📋 Structure calculée en local via data_processing.")
