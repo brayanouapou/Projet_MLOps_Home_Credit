@@ -16,37 +16,46 @@ app = FastAPI(
     version="2.0"
 )
 
-# 2. Chargement du Modèle d'Ensemble (Sécurisé pour Mac)
+# 2. Chargement du Modèle d'Ensemble (Chemin relatif universel Mac/Production)
 model_pipeline = None
 
-MAC_MODEL_PATH = os.path.join(
-    os.getcwd(), 
-    "artifacts/2/models/m-fa39e31d970b4a859c4eea74daea2a21/artifacts/model.pkl"
-)
+# On cherche d'abord dans le dossier d'artifacts standard poussé sur Git
+POSSIBLE_PATHS = [
+    os.path.join(os.getcwd(), "artifacts/2/models/m-fa39e31d970b4a859c4eea74daea2a21/artifacts/model.pkl"),
+    os.path.join(os.getcwd(), "scripts/model.pkl") # Option de secours si tu le déplaces
+]
 
-try:
-    if os.path.exists(MAC_MODEL_PATH):
-        model_pipeline = joblib.load(MAC_MODEL_PATH)
-        print("🚀 Modèle d'Ensemble (AUC: 0.86) chargé avec succès via Joblib !")
-    else:
-        MODEL_URI = "runs:/5964c3d6e6a1429389eff8869cd6234e/Best_Voting_Pipeline"
-        model_pipeline = mlflow.sklearn.load_model(MODEL_URI)
-        print("🚀 Modèle chargé depuis MLFlow !")
-except Exception as e:
-    print(f"❌ Erreur lors du chargement du modèle : {e}")
+for path in POSSIBLE_PATHS:
+    if os.path.exists(path):
+        try:
+            model_pipeline = joblib.load(path)
+            print(f"🚀 Modèle d'Ensemble chargé avec succès depuis : {path}")
+            break
+        except Exception as e:
+            print(f"❌ Erreur lors du chargement de {path} : {e}")
 
-# 3. Chargement de la structure exacte et calcul des médianes d'entraînement (Imputation Industrielle)
+if model_pipeline is None:
+    print("❌ Alerte : Aucun fichier model.pkl trouvé. Vérifie tes chemins sur GitHub.")
+
+# 3. Chargement de la structure des colonnes et des médianes pré-calculées
 MODEL_COLUMNS = []
 TRAIN_MEDIANS = None
 
 try:
-    from scripts.data_processing import X_train
-    MODEL_COLUMNS = list(X_train.columns)
-    # 💡 On calcule et conserve la valeur médiane réelle de chaque colonne
-    TRAIN_MEDIANS = X_train.median()
-    print(f"📋 Structure chargée : {len(MODEL_COLUMNS)} colonnes. Médianes d'imputation prêtes !")
+    # On charge le fichier de médianes ultra-léger généré à l'étape 1
+    MEDIANS_PATH = os.path.join(os.getcwd(), "scripts/train_medians.pkl")
+    if os.path.exists(MEDIANS_PATH):
+        TRAIN_MEDIANS = joblib.load(MEDIANS_PATH)
+        MODEL_COLUMNS = list(TRAIN_MEDIANS.index)
+        print(f"📋 Structure et médianes chargées en production ({len(MODEL_COLUMNS)} features).")
+    else:
+        # Solution de secours locale si le fichier n'est pas encore là
+        from data_processing import X_train
+        MODEL_COLUMNS = list(X_train.columns)
+        TRAIN_MEDIANS = X_train.median()
+        print("📋 Structure calculée en local via data_processing.")
 except Exception as e:
-    print(f"❌ Impossible de charger data_processing ou de calculer les médianes : {e}")
+    print(f"❌ Impossible de charger la structure d'imputation : {e}")
 
 class ClientData(BaseModel):
     features: Dict[str, Any]
