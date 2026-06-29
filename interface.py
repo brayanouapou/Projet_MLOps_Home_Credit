@@ -67,7 +67,7 @@ if st.button("📊 Analyser la Solvabilité du Client", type="primary", use_cont
     
     try:
         with st.spinner("Calcul du risque en cours via l'Ensemble Learning..."):
-            response = requests.post("http://127.0.0.1:8000/predict", json=payload)
+            response = requests.post("https://credit-scoring-api-brayan-2026.onrender.com/predict", json=payload)
             result = response.json()
         
         prob = result["probability_of_default"]
